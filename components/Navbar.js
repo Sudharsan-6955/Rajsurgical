@@ -60,7 +60,7 @@ const Navbar = () => {
 
             {/* Mobile Menu - Dropdown */}
             {isOpen && (
-                <div className="absolute top-full left-0 right-0 bg-white shadow-lg lg:hidden animate-in fade-in slide-in-from-top-4 duration-500 ease-out">
+                <div className="absolute top-full left-0 right-0 bg-white shadow-lg lg:hidden animate-in fade-in slide-in-from-top-4 duration-500 ease-out z-50">
                     <div className="flex flex-col gap-4 px-6 py-6 text-center p-1">
                         <Link
                             href="/"
