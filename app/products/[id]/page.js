@@ -1,12 +1,11 @@
 import Navbar from '@/components/Navbar.js';
+import ComingSoon from '@/components/ComingSoon';
 
 const ProductDetail = () => {
   return (
     <div>
       <Navbar />
-      <main className="p-8">
-        <h1 className="text-4xl font-bold">Product Detail</h1>
-      </main>
+      <ComingSoon title="Product Details" />
     </div>
   );
 };

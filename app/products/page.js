@@ -1,12 +1,11 @@
 import Navbar from '@/components/Navbar';
+import ComingSoon from '@/components/ComingSoon';
 
 const Products = () => {
   return (
     <div>
       <Navbar />
-      <main className="p-8">
-        <h1 className="text-4xl font-bold">Product</h1>
-      </main>
+      <ComingSoon  title="Products" />
     </div>
   );
 };
