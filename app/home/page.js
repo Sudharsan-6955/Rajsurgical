@@ -57,7 +57,7 @@ const Home = () => {
                                 <span className="block">Providers</span>
                             </h2>
                             <p className={`${inter.className} text-gray-600 text-sm md:text-base/6 max-w-2xl mx-auto`}>
-                                Quality products that support better care at every stage of treatment<br />
+                                Quality products that support better care at every stage of treatment
                                 Quality products that support better care at every stage of
                             </p>
                         </div>
@@ -190,14 +190,14 @@ to-[rgba(35,104,35,1)]
                             <div className="flex flex-col-reverse  lg:flex-row items-center justify-between gap-6 lg:gap-10 px-6 md:px-10 lg:px-12 py-4 md:py-4 lg:py-4">
                                 {/* Text */}
                                 <div className="flex-1 max-w-lg">
-                                    <h3 className="text-4xl md:text-5xl lg:text-4xl  tracking-wide leading-tight mb-6">
+                                    <h3 className="text-3xl md:text-5xl md:text-left text-center lg:text-4xl  tracking-wide leading-tight mb-3 md:mb-6">
                                         <span className="block">Schedule Your</span>
                                         <span className="block font-normal">Appointment With us</span>
                                     </h3>
-                                    <p className={`${inter.className} text-sm md:text-base font-light text-white leading-relaxed mb-8 tracking-wide`}>
+                                    <p className={`${inter.className} text-sm md:text-base md:text-left text-center  font-light text-white leading-relaxed mb-8 tracking-wide`}>
                                         Lorem ipsum dolor sit amet consectetur. At donec mollis nulla amet. Elementum nibh lacus adipiscing integer. Elementum nibh lacus adipiscing
                                     </p>
-                                    <div className="flex items-center gap-4">
+                                    <div className="flex items-center md:justify-start justify-center gap-4">
                                         <Link
                                             href="/contact"
                                             className={`${inter.className} inline-flex items-center gap-2 bg-white text-gray-900 font-light text-sm px-4 py-2 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all`}

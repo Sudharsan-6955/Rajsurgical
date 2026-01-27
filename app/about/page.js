@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { Inter } from 'next/font/google';
 import Navbar from '@/components/Navbar';
+import Heroabout from './Heroabout';
 import TeamCarousel from './TeamCarousel';
 import FooterSection from '@/components/FooterSection';
 const inter = Inter({ subsets: ['latin'] });
@@ -15,21 +15,7 @@ const About = () => {
       <Navbar />
       <main className="mx-auto max-w-7xl px-6 md:px-16 lg:px-28 py-1 md:py-20 lg:py-14 ">
         {/* Hero */}
-        <section className="py-10 sm:py-14 lg:py-16 text-center ">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-normal leading-[1.2] md:leading-[1.25] lg:leading-[1.1] md:space-y-2">
-            <span className="block font-light">CREATE</span>
-            <span className="block font-normal">GROW YOUR BRAND</span>
-            <span className="block font-light">SHAPING DIGITAL EXPERIENCES</span>
-          </h1>
-          <p className={`mx-auto mt-6 max-w-2xl text-gray-600 text-sm sm:text-base ${inter.className} leading-relaxed`}>
-            Quality products that support better care at every stage of treatment. Quality products that support better care at every stage of treatment.
-          </p>
-          <div className="mt-2 flex justify-center">
-            <button className={`rounded-full border border-black px-8 py-3 text-sm font-medium hover:bg-black hover:text-white ${inter.className} transition-colors`}>
-              Book a Free Call
-            </button>
-          </div>
-        </section>
+        <Heroabout />
 
         {/* What We Stand For Quality */}
         <section className="">
@@ -205,7 +191,7 @@ const About = () => {
         {/* Team */}
         <section id="team" className="py-3 sm:py-5 lg:py-6">
           <div className="">
-            <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+            <div className="max-w-[63rem] mx-auto grid md:grid-cols-2 gap-2 md:gap-11 items-center">
               <div>
                 <h2 className="text-3xl font-semibold md:text-left text-center sm:text-4xl lg:text-5xl  tracking-tight  leading-[1.2] md:leading-[1.25] lg:leading-[1.1] md:space-y-2 ">
                   <span className='block'>OUR</span>
@@ -217,7 +203,7 @@ const About = () => {
               </div>
             </div>
           </div>
-          <div className="mt-10">
+          <div className="md:mt-7 mt-4">
             <TeamCarousel />
           </div>
         </section>

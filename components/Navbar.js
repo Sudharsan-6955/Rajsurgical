@@ -11,7 +11,11 @@ const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <nav className={`${inter.className} bg-white my-3   px-6 md:px-28 py-4 flex justify-between items-center relative`}>
+        <>
+            {/* Spacer to prevent content jump when navbar is fixed */}
+            <div className="h-[80px]" />
+            
+            <nav className={`${inter.className} fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200/50 px-6 md:px-28 py-4 flex justify-between items-center`}>
             {/* Logo - Left */}
             <Link href="/" className="flex items-center gap-2 flex-shrink-0">
                 <Image
@@ -60,7 +64,7 @@ const Navbar = () => {
 
             {/* Mobile Menu - Dropdown */}
             {isOpen && (
-                <div className="absolute top-full left-0 right-0 bg-white shadow-lg lg:hidden animate-in fade-in slide-in-from-top-4 duration-500 ease-out z-50">
+                <div className="absolute top-full left-0 right-0 bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-200/50 lg:hidden animate-in fade-in slide-in-from-top-4 duration-500 ease-out z-50">
                     <div className="flex flex-col gap-4 px-6 py-6 text-center p-1">
                         <Link
                             href="/"
@@ -101,6 +105,7 @@ const Navbar = () => {
                 </div>
             )}
         </nav>
+        </>
     );
 };
 

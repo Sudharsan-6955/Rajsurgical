@@ -2,22 +2,32 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-const TEAM_ITEMS = [
-    { id: 1, name: 'Robert Fox', role: 'Interaction Designer', img: 'https://picsum.photos/seed/a/400/500' },
-    { id: 2, name: 'Jacob Jones', role: 'Visual Designer', img: 'https://picsum.photos/seed/b/400/500' },
-    { id: 3, name: 'Jane Cooper', role: 'UI Developer', img: 'https://picsum.photos/seed/c/400/500' },
-    { id: 4, name: 'Alex John', role: 'Frontend Dev', img: 'https://picsum.photos/seed/d/400/500' },
-    { id: 5, name: 'Alex John', role: 'Frontend Dev', img: 'https://picsum.photos/seed/e/400/500' },
-    { id: 6, name: 'Jane Cooper', role: 'UI Developer', img: 'https://picsum.photos/seed/g/400/500' },
+const SERVICE_ITEMS = [
+    { id: 1, name: 'Robert Fox', role: 'Interaction Designer', img: 'https://picsum.photos/seed/bird1/400/500' },
+    { id: 2, name: 'Jacob Jones', role: 'Visual Designer', img: 'https://picsum.photos/seed/bird2/400/500' },
+    { id: 3, name: 'Jane Cooper', role: 'UI Developer', img: 'https://picsum.photos/seed/bird3/400/500' },
+    { id: 4, name: 'Alex John', role: 'Frontend Dev', img: 'https://picsum.photos/seed/bird4/400/500' },
+    { id: 5, name: 'Alex John', role: 'Frontend Dev', img: 'https://picsum.photos/seed/bird5/400/500' },
+    { id: 6, name: 'Jane Cooper', role: 'UI Developer', img: 'https://picsum.photos/seed/bird6/400/500' },
+    { id: 7, name: 'Jane Cooper', role: 'UI Developer', img: 'https://picsum.photos/seed/bird7/400/500' },
+    { id: 8, name: 'Jane Cooper', role: 'UI Developer', img: 'https://picsum.photos/seed/bird8/400/500' },
+    { id: 9, name: 'Jane Cooper', role: 'UI Developer', img: 'https://picsum.photos/seed/bird9/400/500' },
+    { id: 10, name: 'Jane Cooper', role: 'UI Developer', img: 'https://picsum.photos/seed/bird10/400/500' },
+    { id: 11, name: 'Jane Cooper', role: 'UI Developer', img: 'https://picsum.photos/seed/bird11/400/500' },
+
 
 ];
 
-export default function TeamCarousel() {
+export default function ServiceCarousel() {
     const containerRef = useRef(null);
     const isAutoScrolling = useRef(false);
     const scrollTimeout = useRef(null);
 
     const [activeIndex, setActiveIndex] = useState(0);
+    const [visibleCount, setVisibleCount] = useState(5);
+
+    const CARDS_PER_BATCH = 5;
+    const hasMoreToShow = visibleCount < SERVICE_ITEMS.length;
 
     //  INITIAL POSITION
     useEffect(() => {
@@ -53,22 +63,6 @@ export default function TeamCarousel() {
     };
 
 
-    //  NAVIGATION
-
-
-    const goNext = () => {
-        if (activeIndex < TEAM_ITEMS.length - 1) {
-            centerCard(activeIndex + 1);
-        }
-    };
-
-    const goPrev = () => {
-        if (activeIndex > 0) {
-            centerCard(activeIndex - 1);
-        }
-    };
-
-
     //  SCROLL PANNA
 
 
@@ -96,9 +90,17 @@ export default function TeamCarousel() {
         setActiveIndex(closest);
     };
 
+    const handleShowMore = () => {
+        const newCount = Math.min(visibleCount + CARDS_PER_BATCH, SERVICE_ITEMS.length);
+        setVisibleCount(newCount);
+        setTimeout(() => {
+            centerCard(visibleCount, true);
+        }, 100);
+    };
+
 
     return (
-        <div className="relative max-w-6xl mx-auto pb-24 ">
+        <div className="relative max-w-6xl mx-auto pb-24">
 
             {/* ===== CAROUSEL ===== */}
             <div className="relative  ">
@@ -114,7 +116,7 @@ export default function TeamCarousel() {
                     className="flex gap-6  overflow-x-auto snap-x snap-mandatory px-4 pt-6 scroll-smooth"
                     style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                 >
-                    {TEAM_ITEMS.map((item, index) => (
+                    {SERVICE_ITEMS.slice(0, visibleCount).map((item, index) => (
                         <div
                             key={item.id}
                             className={`snap-center  shrink-0 w-72 transition-all duration-300
@@ -136,41 +138,40 @@ export default function TeamCarousel() {
                             </div>
                         </div>
                     ))}
+
+                    {hasMoreToShow && (
+                        <div className="snap-center shrink-0 w-72 transition-all duration-300">
+                            <button
+                                onClick={handleShowMore}
+                                className="relative h-72 w-full border-2 border-dashed border-gray-400 rounded-2xl overflow-hidden hover:border-black hover:bg-gray-50 transition-all flex flex-col items-center justify-center gap-4"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-12 h-12 text-gray-600">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                                </svg>
+                                <span className="text-lg font-semibold text-gray-700">Show More</span>
+                                <span className="text-sm text-gray-500">{SERVICE_ITEMS.length - visibleCount} more</span>
+                            </button>
+                        </div>
+                    )}
                 </div>
             </div>
 
             {/* ===== PAGINATION ===== */}
             <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-2">
-                {TEAM_ITEMS.map((_, index) => (
+                {SERVICE_ITEMS.slice(0, visibleCount).map((_, index) => (
                     <button
                         key={index}
                         onClick={() => centerCard(index)}
-                        className={`h-1  rounded-full transition-all
-              ${activeIndex === index ? 'w-10 bg-black' : 'w-4 bg-gray-300'}`}
+                        className={`rounded-full transition-all
+              ${visibleCount > 5 
+                ? `w-2 h-2 ${activeIndex === index ? 'bg-black' : 'bg-gray-300'}`
+                : `h-1 ${activeIndex === index ? 'w-10 bg-black' : 'w-4 bg-gray-300'}`
+              }`}
                     />
                 ))}
-            </div>
-
-            {/* ===== ARROWS ===== */}
-            <div className="hidden md:flex absolute bottom-4 right-6 gap-3">
-                <button
-                    onClick={goPrev}
-                    disabled={activeIndex === 0}
-                    className="w-10 h-10 rounded-full border border-gray-800 disabled:opacity-30 disabled:cursor-not-allowed disabled:border-gray-300 hover:bg-gray-100 transition-all flex items-center justify-center"
-                >
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-                    </svg>
-                </button>
-                <button
-                    onClick={goNext}
-                    disabled={activeIndex === TEAM_ITEMS.length - 1}
-                    className="w-10 h-10 rounded-full border border-gray-800 disabled:opacity-30 disabled:cursor-not-allowed disabled:border-gray-300 hover:bg-gray-100 transition-all flex items-center justify-center"
-                >
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                    </svg>
-                </button>
+                {hasMoreToShow && (
+                    <div className={visibleCount > 5 ? 'w-2 h-2 rounded-full bg-gray-300' : 'h-1 w-4 rounded-full bg-gray-300'} />
+                )}
             </div>
 
         </div>
