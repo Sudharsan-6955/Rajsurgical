@@ -15,8 +15,6 @@ const products = [
   { name: 'BIG Cot', image: '/images/Product%20page/Medvance.svg' },
   { name: 'Room', image: '/images/Product%20page/Nebula.svg' },
   { name: 'guest room', image: '/images/Product%20page/UIM.svg' },
-  { name: 'guest room', image: '/images/Product%20page/UIM.svg' },
-
 ];
 const Service = () => {
   const containerRef = useRef(null);
