@@ -22,6 +22,10 @@ const AdminDashboard = () => {
         NAME 
         COMPANY
         DESCRIPTION
+Do you want me to expand EVERY category to 10 products,
+each sharing the same filterName and each with a unique 
+types value (like the wheelchair example)? 
+
 
         
 
